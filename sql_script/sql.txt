@@ -1,0 +1,102 @@
+USE `employee_directory`;
+
+CREATE TABLE employee2 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    age INT,
+    available BOOLEAN
+);
+
+drop table employee2;
+
+-- Insert sample data into the employee2 table
+INSERT INTO employee2 (first_name, last_name, age, available) VALUES ('John', 'Doe', 30, true);
+INSERT INTO employee2 (first_name, last_name, age, available) VALUES ('Jane', 'Smith', 25, false);
+INSERT INTO employee2 (first_name, last_name, age, available) VALUES ('Michael', 'Johnson', 45, true);
+INSERT INTO employee2 (first_name, last_name, age, available) VALUES ('Emily', 'Davis', 28, true);
+
+SELECT * from employee2;
+
+CREATE TABLE contact (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    contact_type VARCHAR(100),
+    contact_value VARCHAR(255),
+    employee_id INT,
+    FOREIGN KEY (employee_id) REFERENCES employee2(id) ON DELETE CASCADE
+);
+
+CREATE TABLE equipment (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cleaning INT,
+    security INT,
+    tables INT,
+    chairs INT
+);
+
+CREATE TABLE office (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    street VARCHAR(255),
+    manager VARCHAR(100),
+    equipment_id INT,
+    FOREIGN KEY (equipment_id) REFERENCES equipment(id)
+);
+
+CREATE TABLE work_position (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    employee_id INT,
+    office_id INT,
+    FOREIGN KEY (employee_id) REFERENCES employee2(id),
+    FOREIGN KEY (office_id) REFERENCES office(id)
+);
+
+select * from employee2;
+
+INSERT INTO contact (contact_type, contact_value, employee_id)
+VALUES 
+('Email', 'john.doe@example.com', 1),
+('Phone', '555-1234', 1),
+('Email', 'jane.smith@example.com', 2),
+('Phone', '555-5678', 2),
+('Email', 'michael.johnson@example.com', 3);
+INSERT INTO contact (contact_type, contact_value, employee_id)
+VALUES 
+('Email', 'karel.doe@example.com', 4);
+
+
+select * from contact;
+
+INSERT INTO equipment (cleaning, security, tables, chairs)
+VALUES 
+(10, 5, 20, 50),
+(15, 3, 25, 60);
+
+INSERT INTO office (street, manager, equipment_id)
+VALUES 
+('123 Elm St', 'Alice Cooper', 1),
+('456 Oak St', 'Bob Martin', 2);
+
+INSERT INTO work_position (name, employee_id, office_id)
+VALUES 
+('Software Engineer', 1, 1),
+('HR Manager', 2, 2),
+('Project Manager', 3, 1);
+
+ALTER TABLE office ADD COLUMN city VARCHAR(100);
+UPDATE office SET city = 'Praha' WHERE id = 1;
+UPDATE office SET city = 'Teplice' WHERE id = 2;
+insert into work_position values (5,'CEO', 4, 1);
+
+UPDATE work_position set office_id = 1 where name = 'Boss';
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE work_position SET office_id = 2 WHERE name = 'Boss';
+
+
+select * from work_position;
+select * from employee2;
+select * from contact;
+select * from office;
+select * from equipment;
+
