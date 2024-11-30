@@ -1,8 +1,6 @@
-package com.luv2code.springboot.cruddemo.DTO;
+package com.luv2code.springboot.cruddemo.entityDto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 
 public class EmployeeInfoDTO {
@@ -60,7 +58,9 @@ public class EmployeeInfoDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
         if (o == null || getClass() != o.getClass()) return false;
         EmployeeInfoDTO that = (EmployeeInfoDTO) o;
         return cleaning == that.cleaning && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(workPositions, that.workPositions) && Objects.equals(street, that.street) && Objects.equals(city, that.city) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone);

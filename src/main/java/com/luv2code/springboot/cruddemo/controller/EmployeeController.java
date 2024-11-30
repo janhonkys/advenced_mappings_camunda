@@ -1,10 +1,11 @@
 package com.luv2code.springboot.cruddemo.controller;
 
-import com.luv2code.springboot.cruddemo.DTO.EmployeeInfoDTO;
-import com.luv2code.springboot.cruddemo.DTO.WorkPositionDTO;
+import com.luv2code.springboot.cruddemo.entityDto.EmployeeInfoDTO;
+import com.luv2code.springboot.cruddemo.entityDto.EquipmentDTO;
+import com.luv2code.springboot.cruddemo.entityDto.WorkPositionDTO;
 import com.luv2code.springboot.cruddemo.entity.Employee;
 import com.luv2code.springboot.cruddemo.service.EmployeeService;
-import com.luv2code.springboot.cruddemo.service.WorkPositionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -31,6 +33,21 @@ public class EmployeeController {
         return employeeService.findById(id);
     }
 
+    @GetMapping("/employees-city/{city}")
+    public List<Employee> findEmployeesByOfficeCity(@PathVariable String city) {
+        return employeeService.findEmployeesByOfficeCity(city);
+    }
+
+    @GetMapping("/employees-cityDto/{city}")
+    public List<EmployeeInfoDTO> findEmployeesByOfficeCityDto(@PathVariable String city) {
+        return employeeService.findEmployeesByOfficeCityDto(city);
+    }
+
+    @GetMapping("/employees-managerDto/{manager}")
+    public List<EmployeeInfoDTO> findEmployeesByOfficeManagerDto(@PathVariable String manager) {
+        return employeeService.findEmployeesByOfficeManagerDto(manager);
+    }
+
     @GetMapping("/employeeInfo")
     public List<EmployeeInfoDTO> findEmployeesCustomInfo() {
         return employeeService.findEmployeesCustomInfo();
@@ -41,21 +58,11 @@ public class EmployeeController {
         return employeeService.findEmployeeCustomInfo(id);
     }
 
-    @GetMapping("/employees-check")
-    public void employeesCheck(){
-        EmployeeInfoDTO employee = employeeService.findEmployeeCustomInfo(4);
-
-        EmployeeInfoDTO employee1 = new EmployeeInfoDTO("Emily", "Davis", "123 Elm St", "Praha", 10, "karel.doe@example.com", null);
-        HashSet<WorkPositionDTO> workPositions = new HashSet<>();
-        WorkPositionDTO workPosition = new WorkPositionDTO(4, "Boss");
-        WorkPositionDTO workPosition1 = new WorkPositionDTO(5, "CEO");
-        workPositions.add(workPosition);
-        workPositions.add(workPosition1);
-        employee1.setWorkPositions(workPositions);
-
-        System.out.println(employee);
-        System.out.println(employee1);
-        System.out.println(employee.equals(employee1));
+    @GetMapping("/employeeEquipment/{id}")
+    public EquipmentDTO findEquipmentByEmployeeId(@PathVariable int id) {
+        return employeeService.findEquipmentByEmployeeId(id);
     }
+
+
 
 }

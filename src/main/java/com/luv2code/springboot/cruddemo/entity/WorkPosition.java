@@ -2,9 +2,17 @@ package com.luv2code.springboot.cruddemo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "work_position")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class WorkPosition {
 
     @Id
@@ -23,46 +31,6 @@ public class WorkPosition {
     @OneToOne
     @JoinColumn(name = "office_id")  // Foreign key to Office table
     private Office office;
-
-    public WorkPosition() {}
-
-    public WorkPosition(String name, Office office, Employee employee) {
-        this.name = name;
-        this.office = office;
-        this.employee = employee;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Office getOffice() {
-        return office;
-    }
-
-    public void setOffice(Office office) {
-        this.office = office;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     @Override
     public String toString() {

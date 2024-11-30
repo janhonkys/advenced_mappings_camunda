@@ -1,4 +1,4 @@
-package com.luv2code.springboot.cruddemo.rest;
+package com.luv2code.springboot.cruddemo.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
 

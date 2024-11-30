@@ -2,9 +2,17 @@ package com.luv2code.springboot.cruddemo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "equipment")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Equipment {
 
     @Id
@@ -27,66 +35,6 @@ public class Equipment {
     @OneToOne(mappedBy = "equipment")
     @JsonIgnore
     private Office office;
-
-    // Constructors
-    public Equipment() {}
-
-    public Equipment(int cleaning, int security, int tables, int chairs, Office office) {
-        this.cleaning = cleaning;
-        this.security = security;
-        this.tables = tables;
-        this.chairs = chairs;
-        this.office = office;
-    }
-
-    // Getters and Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCleaning() {
-        return cleaning;
-    }
-
-    public void setCleaning(int cleaning) {
-        this.cleaning = cleaning;
-    }
-
-    public int getSecurity() {
-        return security;
-    }
-
-    public void setSecurity(int security) {
-        this.security = security;
-    }
-
-    public int getTables() {
-        return tables;
-    }
-
-    public void setTables(int tables) {
-        this.tables = tables;
-    }
-
-    public int getChairs() {
-        return chairs;
-    }
-
-    public void setChairs(int chairs) {
-        this.chairs = chairs;
-    }
-
-    public Office getOffice() {
-        return office;
-    }
-
-    public void setOffice(Office office) {
-        this.office = office;
-    }
 
     @Override
     public String toString() {

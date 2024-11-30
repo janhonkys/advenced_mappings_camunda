@@ -1,4 +1,4 @@
-package com.luv2code.springboot.cruddemo.DTO;
+package com.luv2code.springboot.cruddemo.entityDto;
 
 import java.util.Objects;
 

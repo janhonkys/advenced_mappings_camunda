@@ -1,4 +1,4 @@
-package com.luv2code.springboot.cruddemo.rest;
+package com.luv2code.springboot.cruddemo.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +38,4 @@ public class EmployeeRestExceptionHandler {
         //return ResponseEntity
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
-
-
 }

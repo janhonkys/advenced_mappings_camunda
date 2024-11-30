@@ -2,9 +2,17 @@ package com.luv2code.springboot.cruddemo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "contact")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Contact {
 
     @Id
@@ -22,38 +30,6 @@ public class Contact {
     @JoinColumn(name = "employee_id")
     @JsonIgnore
     private Employee employee;
-
-    public Contact() {
-    }
-
-    public Contact(String contactType, String contactValue) {
-        this.contactType = contactType;
-        this.contactValue = contactValue;
-    }
-
-    public String getContactType() {
-        return contactType;
-    }
-
-    public void setContactType(String contactType) {
-        this.contactType = contactType;
-    }
-
-    public String getContactValue() {
-        return contactValue;
-    }
-
-    public void setContactValue(String contactValue) {
-        this.contactValue = contactValue;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     @Override
     public String toString() {
